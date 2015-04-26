@@ -42,24 +42,21 @@ func RhymeName(name string) string {
 	copy(rhymedName[1:], tokens)
 
 	rhyme := new(bytes.Buffer)
-	rhymedName[0] = namePrefix("B", firstChar)
-	rhyme.WriteString(fmt.Sprintf("%v, %v, %v\n", name, name, strings.Join(rhymedName, "")))
-
-	rhymedName[0] = namePrefix("F", firstChar)
-	rhyme.WriteString(fmt.Sprintf("Banana fana %v\n", strings.Join(rhymedName, "")))
-
-	rhymedName[0] = namePrefix("M", firstChar)
-	rhyme.WriteString(fmt.Sprintf("Fee fy %v\n", strings.Join(rhymedName, "")))
+	rhyme.WriteString(fmt.Sprintf("%v, %v, %v\n", name, name, makeRhymedName("B", firstChar, rhymedName)))
+	rhyme.WriteString(fmt.Sprintf("Banana fana %v\n", makeRhymedName("F", firstChar, rhymedName)))
+	rhyme.WriteString(fmt.Sprintf("Fee fy %v\n", makeRhymedName("M", firstChar, rhymedName)))
 	rhyme.WriteString(fmt.Sprintf("%v!\n", name))
 
 	return rhyme.String()
 }
 
-func namePrefix(prefix string, firstChar string) string {
+func makeRhymedName(prefix string, firstChar string, nameTokens []string) string {
 	if (prefix == firstChar) {
-		return fmt.Sprintf("%vo-", prefix)
+		nameTokens[0] = fmt.Sprintf("%vo-", prefix)
+	} else {
+		nameTokens[0] = fmt.Sprintf("%vo %v", strings.ToLower(prefix), prefix)
 	}
-	return fmt.Sprintf("%vo %v", strings.ToLower(prefix), prefix)
+	return strings.Join(nameTokens, "")
 }
 
 func debugString(sample string) {
