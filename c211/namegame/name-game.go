@@ -17,7 +17,7 @@ func main() {
 		fmt.Print("What's your name? ")
 		name, err := reader.ReadString('\n')
 		if (err != nil) {
-			fmt.Println(err.Error())
+			fmt.Println("Exiting...")
 			break
 		}
 		fmt.Println(RhymeName(name))
