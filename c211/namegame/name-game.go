@@ -59,14 +59,6 @@ func makeRhymedName(prefix string, firstChar string, nameTokens []string) string
 	return strings.Join(nameTokens, "")
 }
 
-func debugString(sample string) {
-	fmt.Println("Byte loop:")
-    for i := 0; i < len(sample); i++ {
-        fmt.Printf("%+q ", sample[i])
-    }
-    fmt.Printf("\n")
-}
-
 ////// References
 // http://en.wikipedia.org/wiki/The_Name_Game#Rules
 //// Strings
